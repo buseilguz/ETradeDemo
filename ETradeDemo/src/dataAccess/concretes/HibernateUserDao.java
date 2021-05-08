@@ -9,7 +9,7 @@ public class HibernateUserDao implements UserDao {
 
 	@Override
 	public void add(User user) {
-		// TODO Auto-generated method stub
+		System.out.println("-----------------"+user.getName()+" "+user.getSurname()+" Hibernate ile sisteme eklendi---------------------");
 		
 	}
 

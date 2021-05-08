@@ -8,6 +8,7 @@ import business.concretes.UserManager;
 import business.rules.RuleManager;
 
 import core.concretes.RegisterWithGoogleAdapter;
+import dataAccess.concretes.HibernateUserDao;
 import entities.concretes.User;
 
 public class Main {
@@ -30,7 +31,7 @@ public class Main {
 		user2.setPassword("1234567");
 		
 		
-		UserService userService=new UserManager(new RuleManager(), new SendEmail(), new RegisterWithGoogleAdapter());
+		UserService userService=new UserManager(new HibernateUserDao(),new RuleManager(), new SendEmail(), new RegisterWithGoogleAdapter());
 		LoginManager loginManager =new LoginManager();
 		
 	

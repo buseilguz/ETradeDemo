@@ -7,32 +7,29 @@ import business.abstracts.RegisterService;
 import business.abstracts.RuleService;
 import business.abstracts.UserService;
 import core.abstracts.JRegisterService;
-
+import dataAccess.abstracts.UserDao;
 import entities.concretes.User;
 
 
 public class UserManager implements UserService {
 	
+	private UserDao userDao;
 	private RuleService ruleService;
 	private RegisterService registerService;
 	private JRegisterService jregisterService;
+	
+	
 
-	public UserManager(RuleService ruleService, RegisterService registerService, JRegisterService jregisterService) {
+	public UserManager(UserDao userDao, RuleService ruleService, RegisterService registerService,
+			JRegisterService jregisterService) {
 		super();
+		this.userDao = userDao;
 		this.ruleService = ruleService;
 		this.registerService = registerService;
 		this.jregisterService = jregisterService;
 	}
 
 
-
-	public UserManager(RuleService ruleService, RegisterService registerService) {
-		super();
-		this.ruleService = ruleService;
-		this.registerService = registerService;
-	}
-
-	
 
 	@Override
 	public void add(User user) {
@@ -44,6 +41,7 @@ public class UserManager implements UserService {
 			System.out.println("Bilgileri girilen kullanýcý sisteme eklendi");
 			registerService.sendEmail(user);
 			registerService.clickRegisterLink(user);
+			userDao.add(user);
 			
 		}
 		else {
